@@ -164,7 +164,6 @@ class TerrainStrip {
 
         this.game.segmentsCleared++;
         this.game.currentTunnelTop = this.topHeight;
-        this.game.currentTunnelBottom = this.yPosBottom;
       }
     }
     if (this.game.checkGroundCollision(this, this.game.player)) {
@@ -361,7 +360,6 @@ class Game {
     this.gameFrame = 0;
 
     this.currentTunnelTop = 0;
-    this.currentTunnelBottom = 0;
 
     window.addEventListener("keydown", (e) => {
       if (e.key === " " && this.inputs.indexOf("space") === -1)
