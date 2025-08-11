@@ -418,10 +418,10 @@ class Game {
   }
   checkMothCollision(a, player) {
     return (
-      a.xPos < player.xPos + player.hitboxWidth &&
-      a.xPos + a.width > player.xPos &&
-      a.yPos < player.yPos + player.hitboxHeight &&
-      a.yPos + a.height > player.yPos
+      a.xPos <= player.xPos + player.hitboxWidth &&
+      a.xPos + a.width >= player.xPos &&
+      a.yPos <= player.hitboxYpos + player.hitboxHeight &&
+      a.yPos + a.height >= player.hitboxYpos
     );
   }
   render(context) {
