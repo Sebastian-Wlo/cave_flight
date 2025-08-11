@@ -114,6 +114,7 @@ class Moth {
           this.game.energy = this.game.maxEnergy;
         this.visible = false;
         this.game.mothsCaught++;
+        this.game.pickupSound.play();
       }
     }
     if (this.xPos <= 0) {
@@ -360,6 +361,8 @@ class Game {
     this.gameFrame = 0;
 
     this.currentTunnelTop = 0;
+
+    this.pickupSound = document.querySelector("#sound-pickup");
 
     window.addEventListener("keydown", (e) => {
       if (e.key === " " && this.inputs.indexOf("space") === -1)
