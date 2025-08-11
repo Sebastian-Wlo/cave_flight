@@ -164,7 +164,6 @@ class TerrainStrip {
 
         this.game.segmentsCleared++;
         this.game.currentTunnelTop = this.topHeight;
-        this.game.currentTunnelBottom = this.yPosBottom;
       }
     }
     if (this.game.checkGroundCollision(this, this.game.player)) {
@@ -361,7 +360,6 @@ class Game {
     this.gameFrame = 0;
 
     this.currentTunnelTop = 0;
-    this.currentTunnelBottom = 0;
 
     window.addEventListener("keydown", (e) => {
       if (e.key === " " && this.inputs.indexOf("space") === -1)
@@ -418,10 +416,10 @@ class Game {
   }
   checkMothCollision(a, player) {
     return (
-      a.xPos < player.xPos + player.hitboxWidth &&
-      a.xPos + a.width > player.xPos &&
-      a.yPos < player.yPos + player.hitboxHeight &&
-      a.yPos + a.height > player.yPos
+      a.xPos <= player.xPos + player.hitboxWidth &&
+      a.xPos + a.width >= player.xPos &&
+      a.yPos <= player.hitboxYpos + player.hitboxHeight &&
+      a.yPos + a.height >= player.hitboxYpos
     );
   }
   render(context) {
