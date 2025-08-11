@@ -1,13 +1,26 @@
 const flickerBtn = document.querySelector("#toggle-flicker");
 const flickerIndicator = document.querySelector("#flicker-indicator");
 const monitor = document.querySelector("#monitor");
+const muteBtn = document.querySelector("#toggle-audio");
+const mutedIndicator = document.querySelector("#audio-indicator");
+
 let flickerOn = false;
+let mutedAudio = false;
+
+document.addEventListener("keydown", (e) => {
+  if (e.key.toLowerCase() === "f") {
+    toggleFlicker();
+  } else if (e.key.toLowerCase() === "m") {
+    toggleAudio();
+  }
+})
+
 flickerBtn.addEventListener("click", () => {
-  flickerOn = !flickerOn;
   toggleFlicker();
 });
 
 const toggleFlicker = () => {
+  flickerOn = !flickerOn;
   if (!flickerOn) {
     flickerIndicator.classList.remove("indicator-on");
     monitor.classList.remove("animation-flicker");
@@ -16,6 +29,20 @@ const toggleFlicker = () => {
     monitor.classList.add("animation-flicker");
   }
 };
+
+muteBtn.addEventListener("click", () => {
+  toggleAudio();
+});
+
+const toggleAudio = () => {
+  mutedAudio = !mutedAudio;
+  if (!mutedAudio) {
+    mutedIndicator.classList.remove("indicator-on");
+  } else {
+    mutedIndicator.classList.add("indicator-on");
+  }
+};
+
 const color = {
   blck: "#000000",
   whte: "#ffffff",
@@ -114,7 +141,7 @@ class Moth {
           this.game.energy = this.game.maxEnergy;
         this.visible = false;
         this.game.mothsCaught++;
-        this.game.pickupSound.play();
+        if (!mutedAudio) this.game.pickupSound.play();
       }
     }
     if (this.xPos <= 0) {
@@ -170,7 +197,7 @@ class TerrainStrip {
     if (this.game.checkGroundCollision(this, this.game.player)) {
       this.game.gameOver = true;
       this.game.player.frame = 3;
-      this.game.collisionSound.play();
+      if (!mutedAudio) this.game.collisionSound.play();
     }
     this.xPos -= this.game.gameSpeed;
   }
@@ -264,7 +291,7 @@ class StartScreen {
     );
     context.font = this.descFont;
     context.fillStyle = this.descColor;
-    context.fillText("Hold 'Left Mouse Button' or 'space'", 96, 240);
+    context.fillText("Click on the screen or hold 'space'", 96, 240);
     context.fillText("to go up, avoid the terrain,", 96, 264);
     context.fillText("catch moths to regain energy.", 96, 264 + 24);
     if (this.cooldownTimer >= 90) {
@@ -365,6 +392,7 @@ class Game {
 
     this.pickupSound = document.querySelector("#sound-pickup");
     this.collisionSound = document.querySelector("#sound-collision");
+
     window.addEventListener("keydown", (e) => {
       if (e.key === " " && this.inputs.indexOf("space") === -1)
         this.inputs.push("space");
@@ -378,7 +406,7 @@ class Game {
     });
 
     window.addEventListener("mousedown", (e) => {
-      if (e.buttons === 1 && e.target.id !== "toggle-flicker")
+      if (e.buttons === 1 && e.target.id === "game")
         this.inputs.push("leftClick");
     });
 

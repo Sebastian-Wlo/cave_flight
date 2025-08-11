@@ -17,10 +17,16 @@
         <canvas id="game"></canvas>
         <div id="crt-effect"></div>
       </div>
-      <button id="toggle-flicker" type="button">
-        <span id="flicker-indicator" class="toggle-indicator"></span>
-        Screen Flicker
-      </button>
+      <div class="buttonGroup">
+          <button id="toggle-flicker" class="button" type="button">
+          <span id="flicker-indicator" class="toggle-indicator"></span>
+          Screen Flicker
+        </button>
+        <button id="toggle-audio" class="button" type="button">
+          <span id="audio-indicator" class="toggle-indicator"></span>
+          Mute Sounds
+        </button>
+      </div>
     </div>
     <audio defer id="sound-pickup" src="./assets/sounds/pickup.mp3" type="audio/mpeg"></audio>
     <audio defer id="sound-collision" src="./assets/sounds/collision.mp3" type="audio/mpeg"></audio>

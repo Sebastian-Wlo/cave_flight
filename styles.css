@@ -100,6 +100,7 @@ body {
     #0f0f0f0f 6px
   );
 }
+
 #crt-effect::after {
   content: "";
   display: block;
@@ -116,18 +117,22 @@ body {
   box-shadow: inset 4px 4px 6px 6px #0f0f0f, inset -4px -4px 6px 6px #0f0f0f;
 }
 
-#toggle-flicker {
-  padding: 2px 4px;
+.button {
+  padding: 2px 4px 3px;
   border: 4px outset black;
   background-color: rgb(163, 163, 159);
+  font-family: "VT323";
+  font-size: 18px;
+  font-weight: 700;
 }
-#toggle-flicker:hover {
+
+.button:hover {
   padding: 2px 4px;
   border: 4px outset black;
   background-color: rgba(163, 163, 159, 0.5);
 }
 
-#toggle-flicker:active {
+.button:active {
   padding: 2px 4px;
   border: 4px solid transparent;
   background-color: rgba(163, 163, 159, 0.5);
@@ -145,6 +150,8 @@ body {
 .indicator-on {
   background-color: #92df87;
 }
+
+
 
 #game {
   filter: blur(0.5px) brightness(102%);
