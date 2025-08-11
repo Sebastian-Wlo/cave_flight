@@ -365,7 +365,6 @@ class Game {
 
     this.pickupSound = document.querySelector("#sound-pickup");
     this.collisionSound = document.querySelector("#sound-collision");
-
     window.addEventListener("keydown", (e) => {
       if (e.key === " " && this.inputs.indexOf("space") === -1)
         this.inputs.push("space");
