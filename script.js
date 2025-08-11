@@ -114,6 +114,7 @@ class Moth {
           this.game.energy = this.game.maxEnergy;
         this.visible = false;
         this.game.mothsCaught++;
+        this.game.pickupSound.play();
       }
     }
     if (this.xPos <= 0) {
@@ -169,6 +170,7 @@ class TerrainStrip {
     if (this.game.checkGroundCollision(this, this.game.player)) {
       this.game.gameOver = true;
       this.game.player.frame = 3;
+      this.game.collisionSound.play();
     }
     this.xPos -= this.game.gameSpeed;
   }
@@ -361,6 +363,8 @@ class Game {
 
     this.currentTunnelTop = 0;
 
+    this.pickupSound = document.querySelector("#sound-pickup");
+    this.collisionSound = document.querySelector("#sound-collision");
     window.addEventListener("keydown", (e) => {
       if (e.key === " " && this.inputs.indexOf("space") === -1)
         this.inputs.push("space");
